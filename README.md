@@ -54,7 +54,7 @@ Project conventions for AI assistants are documented in [`AGENTS.md`](AGENTS.md)
 
 ## Contact
 
-- Email: kontakt@balderitkonsult.se
+- Email: balderitkonsult@protonmail.com
 - Phone: 070-221 16 96
 - Instagram: [@balderitkonsult](https://www.instagram.com/balderitkonsult)
 
