@@ -216,3 +216,24 @@ form.addEventListener('submit', async (e) => {
   reveal('.kontakt-grid > div:first-child', ':scope > *', 0.1);
   reveal('#contactForm', ':scope > *', 0.08);
 })();
+
+
+/* =====================================================================
+   Bakgrundsfärg bakom sidan (syns vid överscroll och i mobilens verktygsfält):
+   burgundy överst, mörkare burgundy nederst. Körs alltid, oavsett effekter.
+   ===================================================================== */
+(() => {
+  const root = document.documentElement;
+  const css = getComputedStyle(root);
+  const top = css.getPropertyValue('--wine').trim() || '#522834';
+  const bottom = css.getPropertyValue('--wine-deep').trim() || '#3F1C27';
+  let last = '';
+  function paint() {
+    const max = root.scrollHeight - window.innerHeight;
+    const c = max > 0 && window.scrollY / max > 0.5 ? bottom : top;
+    if (c !== last) { root.style.backgroundColor = c; last = c; }
+  }
+  window.addEventListener('scroll', paint, { passive: true });
+  window.addEventListener('resize', paint);
+  paint();
+})();

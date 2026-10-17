@@ -463,3 +463,8 @@ html.fx{ scroll-behavior: auto; }
   transform: scaleX(var(--p, 0));
   transform-origin: left;
 }
+
+/* ---------- Överscroll på mobil: burgundy i stället för vitt ---------- */
+/* script.js växlar html-färgen mellan --wine (uppe) och --wine-deep (nere) */
+html{ background-color: var(--wine); }
+body{ background: transparent; }
