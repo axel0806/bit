@@ -20,8 +20,8 @@
 *{ box-sizing: border-box; }
 html{ scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce){
-  html{ scroll-behavior: auto; }
-  *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  html:not(.fx){ scroll-behavior: auto; }
+  html:not(.fx) *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
 
 body{
@@ -421,4 +421,45 @@ footer{
 @media (max-width: 480px){
   .steps{ grid-template-columns: 1fr; }
   .stat-num{ font-size: 1.5rem; }
+}
+
+/* ---------- SCROLL EFFECTS (aktiveras av script.js via html.fx) ---------- */
+html.fx{ scroll-behavior: auto; }
+
+.scroll-progress{
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 101;
+  pointer-events: none;
+}
+
+.fx .reveal{
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0s),
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0s);
+}
+.fx .reveal.in{ opacity: 1; transform: none; }
+
+.stat-num{ font-variant-numeric: tabular-nums; }
+
+.hero-visual img{ will-change: transform; }
+
+/* Linjen ovanför varje steg fylls på medan man scrollar */
+.step{ position: relative; }
+.step::before{
+  content: '';
+  position: absolute;
+  top: -2px; left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(var(--p, 0));
+  transform-origin: left;
 }
